@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const navItems = [
     { name: "Beranda", href: "#home" },
@@ -16,6 +17,22 @@ export function Header() {
     { name: "Testimoni", href: "#testimonials" },
     { name: "Kontak", href: "#contact" },
   ]
+
+  // Handle scroll event to change header style
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false)
@@ -27,7 +44,11 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-blue-100 z-50 shadow-sm">
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-sm border-b border-blue-100 shadow-sm" : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -51,7 +72,9 @@ export function Header() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                className={`transition-colors duration-200 font-medium ${
+                  scrolled ? "text-gray-700 hover:text-blue-600" : "text-gray-800 hover:text-blue-700"
+                }`}
                 onClick={(e) => {
                   e.preventDefault()
                   handleNavClick(item.href)
@@ -69,7 +92,13 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">Konsultasi Gratis</Button>
+              <Button
+                className={`shadow-md hover:shadow-lg transition-all duration-300 ${
+                  scrolled ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-700 hover:bg-blue-800"
+                }`}
+              >
+                Konsultasi Gratis
+              </Button>
             </a>
           </div>
 

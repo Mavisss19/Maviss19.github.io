@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Star, Users, Clock, Shield } from "lucide-react"
+import { CheckCircle, Star, Users, Clock, Shield, Award } from "lucide-react"
 
-export function Hero() {
+export function EnhancedHero() {
   const whatsappNumber = "6289504407244"
 
   return (
@@ -10,6 +10,11 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-6">
+              <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <Award className="h-4 w-4 mr-2" />
+                #1 Jasa Tugas Kuliah di Bengkulu
+              </div>
+
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
                 Tugas Kuliah{" "}
                 <span className="text-blue-600 relative">

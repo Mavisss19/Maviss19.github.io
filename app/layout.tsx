@@ -1,29 +1,8 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "KelarBro - Joki Tugas Kuliah Terpercaya di Bengkulu",
-  description:
-    "Solusi terpercaya untuk semua kebutuhan tugas kuliah mahasiswa Bengkulu. Dikerjakan oleh ahli berpengalaman dengan kualitas terjamin dan tepat waktu. Melayani UNIB, Dehasen, UMB, dan universitas lainnya.",
-  keywords: "joki tugas, tugas kuliah, essay, makalah, programming, skripsi, bengkulu, UNIB, universitas bengkulu",
-  authors: [{ name: "KelarBro Team" }],
-  viewport: "width=device-width, initial-scale=1",
-  openGraph: {
-    title: "KelarBro - Joki Tugas Kuliah Terpercaya di Bengkulu",
-    description: "Solusi terpercaya untuk semua kebutuhan tugas kuliah mahasiswa Bengkulu",
-    type: "website",
-    locale: "id_ID",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-    generator: 'v0.dev'
-}
 
 export default function RootLayout({
   children,
@@ -34,8 +13,45 @@ export default function RootLayout({
     <html lang="id" className="scroll-smooth">
       <head>
         <link rel="icon" href="/images/kelarbro-logo.webp" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+          integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+          integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          async
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Check if service worker is supported
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(
+                    function(registration) {
+                      console.log('Service Worker registration successful');
+                    },
+                    function(error) {
+                      console.log('Service Worker registration failed:', error);
+                    }
+                  );
+                });
+              }
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
 }
+
+export const metadata = {
+      generator: 'v0.dev'
+    };

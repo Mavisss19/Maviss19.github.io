@@ -42,12 +42,6 @@ export function About() {
 
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 right-10 w-32 h-32 bg-blue-600 rounded-full"></div>
-        <div className="absolute bottom-20 left-10 w-24 h-24 bg-blue-400 rounded-full"></div>
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
